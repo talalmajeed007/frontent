@@ -55,9 +55,15 @@ export default function NumberCounter() {
         ))}
       </div>
 
-      {/* Main content - Big centered number */}
-      <div className="relative z-10 text-center">
-        <div className="text-[20rem] font-bold text-black animate-glow animate-swipe">
+      {/* Main content - Big centered number, responsive */}
+      <div className="relative z-10 text-center w-full flex items-center justify-center">
+        <div className="font-bold text-black animate-glow animate-swipe select-none leading-none truncate w-full"
+          style={{
+            fontSize: 'clamp(4rem, 25vw, 20rem)',
+            maxWidth: '100vw',
+            wordBreak: 'break-all',
+          }}
+        >
           {number}
         </div>
       </div>
