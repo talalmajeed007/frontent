@@ -6,7 +6,6 @@ const PARTICLE_COUNT = 30;
 
 export default function NumberCounter() {
   const [number, setNumber] = useState(0);
-  const [isRunning, setIsRunning] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Generate random particle data only once on the client
@@ -20,22 +19,15 @@ export default function NumberCounter() {
   }, []);
 
   useEffect(() => {
-    if (isRunning) {
-      intervalRef.current = setInterval(() => {
-        setNumber(prev => prev + 1);
-      }, 1000);
-    } else {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    }
-
+    intervalRef.current = setInterval(() => {
+      setNumber(prev => prev + 1);
+    }, 1000);
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isRunning]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center relative overflow-hidden">
